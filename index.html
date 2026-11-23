@@ -378,6 +378,22 @@ p{margin:0;}
 .momento p{font-size:1.04rem;line-height:1.7;color:var(--tinta);opacity:.88;}
 .momento .onde{font-weight:500;opacity:1;margin-top:.5rem;}
 
+.portaria{
+  margin-top:1rem;
+  padding:1rem 1.1rem;
+  background:#FFFDF8;
+  border-left:2px solid var(--dourado);
+}
+.portaria-titulo{
+  font-family:var(--f-util);font-weight:400;
+  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--oliva-600);margin-bottom:.5rem;
+}
+.portaria ol{margin:0;padding-left:1.2rem;}
+.portaria li{font-size:1.02rem;line-height:1.65;margin:.15rem 0;}
+.portaria li::marker{color:var(--dourado);font-weight:600;}
+.portaria strong{font-weight:600;color:var(--oliva-700);}
+
 .link-mapa{
   display:inline-flex;align-items:center;gap:.5rem;
   margin-top:.8rem;
@@ -903,7 +919,15 @@ html.painel body{overflow:auto;height:auto;background:var(--creme);}
         <div class="hr">18h00</div>
         <div>
           <h3>Festa</h3>
-          <p>Depois da cerimônia, a comemoração continua. O botão abaixo abre a localização exata no Google Maps.</p>
+          <p>Depois da cerimônia, a comemoração continua! O botão abaixo leva você direto até a festa, que fica dentro de um condomínio. Por isso, antes de entrar, você vai passar pela portaria.</p>
+          <div class="portaria">
+            <p class="portaria-titulo">Ao chegar na portaria</p>
+            <ol>
+              <li>Informe o endereço <strong id="enderecoFesta">Rua Alaska, 460</strong>.</li>
+              <li>Apresente seu <strong>nome completo</strong>, o mesmo da confirmação de presença. Se estiver com acompanhantes, informe também o <strong>nome completo de cada um</strong>.</li>
+              <li>Depois é só seguir as orientações até a festa.</li>
+            </ol>
+          </div>
           <a class="link-mapa" id="mapaFesta" href="#" target="_blank" rel="noopener">
             <svg aria-hidden="true"><use href="#pin"/></svg>Como chegar à festa
           </a>
@@ -1184,7 +1208,9 @@ const CONFIG = {
     mapa: ''
   },
   festa: {
-    mapa: 'https://maps.app.goo.gl/hnTdEkdbi9xHWo2L8'
+    // Endereço que o convidado informa na portaria do condomínio
+    endereco: 'Rua Alaska, 460',
+    mapa:'https://maps.app.goo.gl/hnTdEkdbi9xHWo2L8'
   },
 
   lojaPresentes: 'Havan',
@@ -1228,6 +1254,7 @@ $('ondeCerimonia').textContent = c.nome + ' · ' + c.endereco;
 $('linkLocalConvite').href = linkCerimonia;
 $('mapaCerimonia').href    = linkCerimonia;
 $('mapaFesta').href        = CONFIG.festa.mapa;
+$('enderecoFesta').textContent = CONFIG.festa.endereco;
 $('prazoRsvp').textContent = CONFIG.prazoRsvp;
 
 $('btnLista').href = CONFIG.listaPresentes;
